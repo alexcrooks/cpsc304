@@ -2,10 +2,12 @@
 
 var koa = require('koa');
 var surface = require('surface');
+var cors = require('koa-cors');
 var bodyParser = require('koa-bodyparser');
 var _ = require('underscore');
 var db = require('./lib/helpers/db.js');
 var app = koa();
+app.use(cors({origin: '*'}));
 app.use(bodyParser());
 
 surface(app);
