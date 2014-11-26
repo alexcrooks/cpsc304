@@ -1,7 +1,7 @@
 <div class="container">
   <h1>AMS Store</h1>
 
-    <p>To issue a refund, enter the Order ID, the UPC of the item, and the quanity.</p>
+    <p>To issue a refund, enter the Order ID, the UPC of the item, and the quantity.</p>
     <div class="col-sm-6">
       <h3>Refund</h3>
       
@@ -24,6 +24,7 @@
             <p class="help-text" ng-repeat="error in refundForm.errors">{{error}}</p>
           </div>
         </div>
+        {{successMessage}}
       </form>
     </div>
 </div>

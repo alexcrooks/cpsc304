@@ -44,10 +44,10 @@
       };
 
       if (signUpForm.data.username !== user.id)  {
-         App.collection.customer.insert(data, function (customer) {
-        $scope.state.customer = customer;
-      });
-        //$scope.state.customer = data;
+      //   App.collection.customer.insert(data, function (customer) {
+      //  $scope.state.customer = customer;
+      //});
+        $scope.state.customer = data;
       } else {
         signUpForm.errors.push('That username has already been taken');
       }
