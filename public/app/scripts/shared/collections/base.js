@@ -9,7 +9,7 @@
       var result = self.service.create(data, function () {
         var item = new window[self.model](result.data.items);
         self.add(item);
-        callback(item);
+        return callback(item);
       });
     };
 
@@ -18,7 +18,20 @@
       var object = self.getWhere(selector);
       var result = self.service.delete(selector, function () {
         self.remove(object);
-        callback();
+        return callback();
+      });
+    };
+
+
+    BaseCollection.prototype.loadOne = function (selector, callback) {
+      var self = this;
+      var result = self.service.find(selector, function () {
+        if (_.isObject(result.data.items)) {
+          var item = new window[self.model](result.data.items);
+          self.add(item);
+          return callback(item);
+        }
+        return callback();
       });
     };
 
@@ -30,7 +43,7 @@
           items.push(new window[self.model](item));
         });
         self.addAll(items);
-        callback(items);
+        return callback(items);
       });
     };
 

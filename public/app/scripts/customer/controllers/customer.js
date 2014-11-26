@@ -4,12 +4,6 @@
   App.app.controller('CustomerCtrl', ['$scope', function ($scope) {
     $scope.state.controller = 'customer';
 
-    var user = {
-      id: 'alex',
-      password: 'root',
-      name: 'Alex'
-    };
-
     var loginForm = {
       data: {},
       errors: []
@@ -23,11 +17,16 @@
     $scope.login = function () {
       loginForm.errors = [];
 
-      if (user.id === loginForm.data.username && user.password === loginForm.data.password) {
-        $scope.state.customer = user;
-      } else {
-        loginForm.errors.push('You could not be logged in.');
-      }
+      var selector = {id: loginForm.data.username};
+      App.collection.customer.loadOne(selector, function (customer) {
+        if (!customer) {
+          return loginForm.errors.push('You could not be logged in, invalid username.');
+        }
+        if (customer.password !== loginForm.data.password) {
+          return loginForm.errors.push('You could not be logged in, invalid password.');
+        }
+        return $scope.state.customer = customer;
+      });
     };
 
     $scope.loginForm = loginForm;
