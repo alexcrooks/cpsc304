@@ -1,42 +1,19 @@
-<div class="container">
-  <h1>Customer Page</h1>
-
-  <div ng-if="state.customer">
-    <p>Welcome to the store, {{state.customer.name}}</p>
-    <p>Here's your shopping cart! You must provide the category, title, or lead singer, and the quantity to add items.  </p>
-    <div class="col-sm-6">
-      <h3>Search</h3>
-      
-      <form name="searchNgForm" ng-submit="search();">
-        <div class="form-group">
-          <input class="form-control input-sm" type="text" name="title" placeholder="Title" ng-model="searchForm.data.title" ng-required="false">
-          <p class="help-text" ng-if="showFormError(searchNgForm, 'title', 'required');"> One of these is required</p>
-        </div>
-        <div class="form-group">
-          <input class="form-control input-sm" type="text" name="category" placeholder="Category" ng-model="searchForm.data.category" ng-required="false">
-          <p class="help-text" ng-if="showFormError(searchNgForm, 'category', 'required');">One of these is required</p>
-        </div>
-        <div class="form-group">
-          <input class="form-control input-sm" type="text" name="lead_singer" placeholder="Lead Singer" ng-model="searchForm.data.lead_singer" ng-required="false">
-          <p class="help-text" ng-if="showFormError(searchNgForm, 'lead_singer', 'required');">One of these is required</p>
-        </div>
-        <div class="form-group">
-          <input class="form-control input-sm" type="text" name="quantity" placeholder="Quantity" ng-model="searchForm.data.quantity" ng-required="true">
-          <p class="help-text" ng-if="showFormError(searchNgForm, 'quantity', 'required');">Required</p>
-        </div>
-        <div class="form-group">
-          <input class="btn btn-sm btn-primary" type="submit" value="Search">
-          <div class="errors">
-            <p class="help-text" ng-repeat="error in searchForm.errors">{{error}}</p>
-          </div>
-        </div>
-      </form>
-    </div>
-
-
+<div>
+  <div class="view-cart" ng-if="state.customer">
+    <a class="btn btn-sm btn-primary" ng-click="state.section = 'cart'">{{state.cart.length}} <span class="glyphicon glyphicon-shopping-cart"></span></a>
   </div>
+  <div class="cart container" ng-if="state.section === 'cart'">
+    <div cart-section></div>
+  </div>
+  <div class="store container" ng-if="state.section === 'shop' && state.customer">
+    <div store-section></div>
+  </div>
+  <div class="checkout container" ng-if="state.section === 'checkout'">
+    <div checkout-section></div>
+  </div>
+  <div class="container" ng-if="state.section === 'shop' && !state.customer">
+    <h1>Login or Sign Up</h1>
 
-  <div ng-if="!state.customer">
     <p>Hello! You must <strong>sign up</strong> or <strong>login</strong> to use the store.
 
     <div class="col-sm-6">

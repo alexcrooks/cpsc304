@@ -1,0 +1,29 @@
+<div>
+  <h3>Checkout</h3>
+
+  <div>
+    <p>Your order:</p>
+
+    <div ng-repeat="cartItem in getOrder()">
+      {{cartItem.quantity}} copies, <em>{{getItem(cartItem.upc).title}}</em>
+    </div>
+
+    <p><strong>Total:</strong> {{getTotalCartPrice(getOrder()) | currency:''}}</p>
+  </div>
+
+  <form name="checkoutNgForm" ng-submit="checkout();" ng-if="!checkoutForm.order">
+    <div class="form-group">
+      <input type="text" class="form-control input-sm" placeholder="Card Number" ng-model="checkoutForm.data.cardNumber">
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control input-sm" placeholder="Expiry" ng-model="checkoutForm.data.cardExpiry">
+    </div>
+    <div class="form-group">
+      <input type="submit" class="btn btn-sm btn-primary" value="Checkout">
+    </div>
+  </form>
+    <div ng-if="!!checkoutForm.order">
+      <p><strong>Your order has been received.</strong> Thank you for shopping with us, your expected delivery date is {{checkoutForm.order.expectedDate | date}}.</p>
+      <p><a href="" ng-click="returnToShopping()">Return to shopping</a></p>
+    </div>
+</div>

@@ -7,10 +7,30 @@
     BaseCollection.prototype.insert = function (data, callback) {
       var self = this;
       var result = self.service.create(data, function () {
-        var item = new window[self.model](result.data.items);
-        self.add(item);
-        return callback(item);
+        var items = self.addToCollection(result.data.items);
+        return callback(items);
       });
+    };
+
+    BaseCollection.prototype.addToCollection = function (items) {
+      var self = this;
+      var arrayProvided = _.isArray(items);
+      items = arrayProvided ? items : [items];
+      var parsedItems = [];
+      _.each(items, function (item) {
+        _.each(item, function (value, property) {
+          delete item[property];
+          if (_.isObject(value) || _.isArray(value)) {
+            var collection = property.slice(0, -1);
+            App.collection[collection].addToCollection(value);
+          } else {
+            item[App.helpers.string.underToCamel(property)] = value;
+          }
+        });
+        parsedItems.push(new window[self.model](item));
+      });
+      self.addAll(parsedItems);
+      return arrayProvided ? parsedItems : parsedItems[0];
     };
 
     BaseCollection.prototype.delete = function (selector, callback) {
@@ -27,9 +47,8 @@
       var self = this;
       var result = self.service.find(selector, function () {
         if (_.isObject(result.data.items)) {
-          var item = new window[self.model](result.data.items);
-          self.add(item);
-          return callback(item);
+          var items = self.addToCollection(result.data.items);
+          return callback(items);
         }
         return callback();
       });
@@ -38,11 +57,7 @@
     BaseCollection.prototype.load = function (selector, callback) {
       var self = this;
       var result = self.service.get(function () {
-        var items = [];
-        _.each(result.data.items, function (item) {
-          items.push(new window[self.model](item));
-        });
-        self.addAll(items);
+        var items = self.addToCollection(result.data.items);
         return callback(items);
       });
     };

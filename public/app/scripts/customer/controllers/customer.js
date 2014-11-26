@@ -2,7 +2,9 @@
   'use strict';
 
   App.app.controller('CustomerCtrl', ['$scope', function ($scope) {
-    $scope.state.controller = 'customer';
+    $scope.state.page = 'customer';
+    $scope.state.section = 'shop';
+    $scope.state.cart = [];
 
     var loginForm = {
       data: {},
@@ -12,6 +14,29 @@
     var signUpForm = {
       data: {},
       errors: []
+    };
+
+    $scope.addToCart = function (upc, quantity) {
+      $scope.state.cart.push({upc: upc, quantity: quantity});
+    };
+
+    $scope.removeFromCart = function (upc) {
+      var cart = $scope.state.cart;
+      $scope.state.cart = _.without(cart, _.findWhere(cart, {upc: upc}));
+    };
+
+    $scope.alreadyInCart = function (upc) {
+      return !!_.findWhere($scope.state.cart, {upc: upc});
+    };
+
+    $scope.getTotalCartPrice = function (order) {
+      order = order || $scope.state.cart;
+      var total = 0;
+      _.each(order, function (cartItem) {
+        var item = App.collection.item.get(cartItem.upc);
+        total += cartItem.quantity * item.price;
+      });
+      return total;
     };
 
     $scope.login = function () {
@@ -41,16 +66,16 @@
         address: signUpForm.data.address,
         phone: signUpForm.data.phone
       };
-
-      if (signUpForm.data.username !== user.id)  {
-      //   App.collection.customer.insert(data, function (customer) {
-      //  $scope.state.customer = customer;
-      //});
-        $scope.state.customer = data;
-      } else {
-        signUpForm.errors.push('That username has already been taken');
-      }
-    }
+      App.collection.customer.loadOne({id: data.id}, function (result) {
+        if (result) {
+          signUpForm.errors.push('That username has already been taken');
+        } else {
+          App.collection.customer.insert(data, function (customer) {
+            $scope.state.customer = customer;
+          });
+        }
+      });
+    };
 
 
     $scope.signUpForm = signUpForm;

@@ -1,0 +1,60 @@
+<div>
+  <h1>Shop</h1>                                                               
+                                                                                    
+  <p>Welcome to the store, {{state.customer.name}}</p> 
+  
+  <p>Search for an item below:</p>
+
+  <div>
+    <div class="form-inline">
+      <div class="form-group">
+        <select class="form-control input-sm" placeholder="Type" ng-model="itemSearch.type">
+          <option value></option>
+          <option value="CD">CD</option>
+          <option value="DVD">DVD</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <select class="form-control input-sm" placeholder="Category" ng-model="itemSearch.category">
+          <option value></option>
+          <option value="ROCK">Rock</option>
+          <option value="POP">Pop</option>
+          <option value="RAP">Rap</option>
+          <option value="COUNTRY">Country</option>
+          <option value="CLASSICAL">Classical</option>
+          <option value="NEW_AGE">New Age</option>
+          <option value="INSTRUMENTAL">Instrumental</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control input-sm" placeholder="Title" ng-model="itemSearch.title">
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control input-sm" placeholder="Singer" ng-model="itemSearch.singer">
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control input-sm" placeholder="Song" ng-model="itemSearch.song">
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <table class="table">
+      <thead>
+      <tr>
+        <td>Type</td>
+        <td>Item</td>
+        <td>Price</td>
+        <td>Add to Cart</td>
+      </tr>
+      </thead>
+      <tbody ng-repeat="item in getItems() | filter:customFilter as resultSet" item></tbody>
+      <tfoot>
+      <tr ng-if="!resultSet.length">
+        <td class="text-center" colspan="4">Could not find any items with your search.</td>
+      </tr>
+      </tfoot>
+    </table>
+      
+  </div>
+</div>

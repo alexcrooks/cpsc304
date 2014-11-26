@@ -1,6 +1,8 @@
 (function (App) {
   'use strict';
 
+  App.config.dbDateFormat = 'YYYY-MM-DD';
+
   App.collection = {
       collections: [
         {name: 'Customer', id: 'id'},
@@ -13,6 +15,8 @@
         {name: 'ReturnItem'}
       ]
   };
+
+  App.helpers = {};
 
   App.app = angular.module('cpsc304App', [
     'ngCookies',
@@ -32,7 +36,8 @@
     _.each(arguments, function (argument) {
       if (typeof argument === 'function') {
         object = new argument();
-        App.collection[object.instance.toLowerCase()] = object;
+        var collectionName = App.helpers.string.lowercaseFirst(object.instance);
+        App.collection[collectionName] = object;
       }
     });
   }]));

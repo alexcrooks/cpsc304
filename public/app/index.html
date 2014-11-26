@@ -34,10 +34,10 @@
 
       <div class="collapse navbar-collapse pull-right" id="cs-navbar">
         <ul class="nav navbar-nav">
-          <li ng-class="{'active':(state.controller === 'home')}"><a href="#/">Home</a></li>
-          <li ng-class="{'active':(state.controller === 'customer')}"><a href="#/customer">Customer</a></li>
-          <li ng-class="{'active':(state.controller === 'clerk')}"><a href="#/clerk">Clerk</a></li>
-          <li ng-class="{'active':(state.controller === 'manager')}"><a href="#/manager">Manager</a></li>
+          <li ng-class="{'active':(state.page === 'home')}"><a href="#/">Home</a></li>
+          <li ng-class="{'active':(state.page === 'customer')}"><a href="#/customer">Customer</a></li>
+          <li ng-class="{'active':(state.page === 'clerk')}"><a href="#/clerk">Clerk</a></li>
+          <li ng-class="{'active':(state.page === 'manager')}"><a href="#/manager">Manager</a></li>
       </div>
     </nav>
 
@@ -73,12 +73,14 @@
     <script src="bower_components/angular-collection/angular-collection.min.js"></script>
     <script src="bower_components/underscore/underscore.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/config.js"></script>
         <script src="scripts/app.js"></script>
+        <script src="scripts/shared/helpers/string.js"></script>
         <script src="scripts/shared/models/customer.js"></script>
         <script src="scripts/shared/models/has-song.js"></script>
         <script src="scripts/shared/models/item.js"></script>
@@ -101,6 +103,10 @@
         <script src="scripts/shared/controllers/base.js"></script>
         <script src="scripts/home/controllers/home.js"></script>
         <script src="scripts/customer/controllers/customer.js"></script>
+        <script src="scripts/customer/controllers/store.js"></script>
+        <script src="scripts/customer/controllers/cart.js"></script>
+        <script src="scripts/customer/controllers/checkout.js"></script>
+        <script src="scripts/customer/directives.js"></script>
         <script src="scripts/clerk/controllers/clerk.js"></script>
         <script src="scripts/manager/controllers/manager.js"></script>
         <!-- endbuild -->

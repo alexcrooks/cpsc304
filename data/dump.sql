@@ -36,16 +36,16 @@ CREATE TABLE `lead_singer` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE `order` (
-  `id` int(10) unsigned NOT NULL,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `customer_id` varchar(255) NOT NULL,
   `date` date NOT NULL,
   `card_number` varchar(255) NOT NULL,
   `card_expiry` varchar(7) NOT NULL,
   `expected_date` date NOT NULL,
-  `delivered_date` date NOT NULL,
+  `delivered_date` date DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `customer_id` (`customer_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
 
 CREATE TABLE `order_item` (
   `order_id` int(10) unsigned NOT NULL,

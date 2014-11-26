@@ -1,0 +1,53 @@
+<tbody>
+<tr>
+<td>
+  <span ng-if="item.isDvd()">DVD</span>
+  <span ng-if="item.isCd()">
+    CD ({{item.getCategoryDisplayName()}})
+  </span>
+  <div class="text-muted">UPC: {{item.upc}}</div>
+</td>
+<td class="item-description">
+  {{item.title}} <span ng-if="item.year !== '0000'">({{item.year}})</span><br>
+  <span class="text-muted">{{item.company}}</span>
+</td>
+<td>{{item.price | currency:''}}</td>
+<td class="form-inline" ng-if="state.section === 'shop'">
+  <div ng-switch="alreadyInCart(item.upc)">
+    <div ng-switch-when="true">
+      Already in cart
+    </div>
+    <div ng-switch-when="false">
+      <input type="number" class="form-control input-sm" placeholder="Qty"  min="0" max="{{item.stock}}" ng-model="quantity">
+      <button class="btn btn-sm btn-primary" ng-click="addToCart(item.upc, quantity);" ng-disabled="!quantity"><span class="glyphicon glyphicon-plus"></span></button>
+    </div>
+  </div>
+</td>
+<td ng-if="state.section === 'cart'">
+  {{getQuantity(item.upc)}}
+</td>
+<td ng-if="state.section === 'cart'">
+  {{getTotal(item.upc) | currency:''}}
+</td>
+<td ng-if="state.section === 'cart'">
+  <button class="btn btn-sm btn-danger" ng-click="removeFromCart(item.upc);"><span class="glyphicon glyphicon-remove"></span></button>
+</td>
+</tr>
+<tr class="no-border" ng-if="item.isCd() && (item.getSingers().length || item.getSongs().length)">
+<td></td>
+<td colspan="3">
+  <div class="singers pull-left">
+    <div ng-if="item.getSingers().length">Singers:</div>
+    <div ng-repeat="singer in item.getSingers()">
+      {{singer.name}}
+    </div>
+  </div>
+  <div class="songs pull-left">
+    <div ng-if="item.getSongs().length">Songs:</div>
+    <div ng-repeat="song in item.getSongs()">
+      {{song.title}}
+    </div>
+  </div>
+</td>
+</tr>
+</tbody>

@@ -10,6 +10,10 @@
     
     $scope.init = function () {
       $scope.state.appReady = true;
+      var nop = function () {};                                                 
+      App.collection.item.load({}, nop);                                        
+      App.collection.hasSong.load({}, nop);                                     
+      App.collection.leadSinger.load({}, nop);     
     };
 
     $scope.showFormError = function (ngForm, field, error) {

@@ -91,3 +91,20 @@ body {
   }
 }
 
+.table > tbody > tr.no-border > td {
+  border-top: 0;
+}
+
+.singers {
+
+}
+
+.songs {
+  margin-left: 40px;
+}
+
+.view-cart {
+  position: fixed;
+  top: 100px;
+  right: 20px;
+}
