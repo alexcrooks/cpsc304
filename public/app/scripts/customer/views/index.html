@@ -3,6 +3,35 @@
 
   <div ng-if="state.customer">
     <p>Welcome to the store, {{state.customer.name}}</p>
+    <p>Here's your shopping cart! You must provide the category, title, or lead singer, and the quantity to add items.  </p>
+    <div class="col-sm-6">
+      <h3>Search</h3>
+      
+      <form name="searchNgForm" ng-submit="search();">
+        <div class="form-group">
+          <input class="form-control input-sm" type="text" name="title" placeholder="Title" ng-model="searchForm.data.title" ng-required="false">
+          <p class="help-text" ng-if="showFormError(searchNgForm, 'title', 'required');"> One of these is required</p>
+        </div>
+        <div class="form-group">
+          <input class="form-control input-sm" type="text" name="category" placeholder="Category" ng-model="searchForm.data.category" ng-required="false">
+          <p class="help-text" ng-if="showFormError(searchNgForm, 'category', 'required');">One of these is required</p>
+        </div>
+        <div class="form-group">
+          <input class="form-control input-sm" type="text" name="lead_singer" placeholder="Lead Singer" ng-model="searchForm.data.lead_singer" ng-required="false">
+          <p class="help-text" ng-if="showFormError(searchNgForm, 'lead_singer', 'required');">One of these is required</p>
+        </div>
+        <div class="form-group">
+          <input class="form-control input-sm" type="text" name="quantity" placeholder="Quantity" ng-model="searchForm.data.quantity" ng-required="true">
+          <p class="help-text" ng-if="showFormError(searchNgForm, 'quantity', 'required');">Required</p>
+        </div>
+        <div class="form-group">
+          <input class="btn btn-sm btn-primary" type="submit" value="Search">
+          <div class="errors">
+            <p class="help-text" ng-repeat="error in searchForm.errors">{{error}}</p>
+          </div>
+        </div>
+      </form>
+    </div>
 
 
   </div>
@@ -34,12 +63,34 @@
     <div class="col-sm-6">
       <h3>Sign up</h3>
 
-      form here with:
-        - username (id)
-        - password
-        - name
-        - address
-        - phone
+      <form name="SignUpNgForm" ng-submit="signup();">
+        <div class="form-group">
+          <input class="form-control input-sm" type="text" name= "username" placeholder="Username" ng-model="signUpForm.data.username" ng-required="true">
+          <p class="help-text" ng-if="showFormError(SignUpNgForm, 'username', 'required');">*Required</p>
+        </div>
+        <div class="form-group">
+          <input class="form-control input-sm" type="password" name= "password" placeholder="Password" ng-model="signUpForm.data.password" ng-required="true">
+          <p class="help-text" ng-if="showFormError(SignUpNgForm, 'password', 'required');">*Required</p>
+        </div>
+        <div class="form-group">
+          <input class="form-control input-sm" type="text" name= "name" placeholder="Name" ng-model="signUpForm.data.name" ng-required="true">
+          <p class="help-text" ng-if="showFormError(SignUpNgForm, 'name', 'required');">*Required</p>
+        </div>
+        <div class="form-group">
+          <input class="form-control input-sm" type="text" name= "address" placeholder="Address" ng-model="signUpForm.data.address" ng-required="true">
+          <p class="help-text" ng-if="showFormError(SignUpNgForm, 'address', 'required');">*Required</p>
+        </div>
+          <div class="form-group">
+          <input class="form-control input-sm" type="text" name= "phone" placeholder="Phone" ng-model="signUpForm.data.phone" ng-required="true">
+          <p class="help-text" ng-if="showFormError(SignUpNgForm, 'phone', 'required');">*Required</p>
+        </div>
+        <div class="form-group">
+          <input class="btn btn-sm btn-primary" type="submit" value="Sign Up">
+          <div class="errors">
+            <p class="help-text" ng-repeat="error in signUpForm.errors">{{error}}</p>
+          </div>
+      </form>
+      
     </div>
   </div>
 </div>

@@ -53,7 +53,7 @@ CREATE TABLE `order_item` (
   `quantity` int(10) unsigned NOT NULL,
   PRIMARY KEY (`order_id`,`upc`),
   KEY `upc` (`upc`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT orderCHARSET=latin1;
 
 CREATE TABLE `return` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
