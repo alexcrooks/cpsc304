@@ -26,7 +26,6 @@
       refundForm.errors = [];
       
       var orderItemData = {orderId: parseInt(refundForm.data.order_id), upc: parseInt(refundForm.data.upc)};
-      console.log(orderItemData);
       App.collection.orderItem.loadOne(orderItemData, function (orderItem) {
 	    if (!orderItem) { 
       	  return refundForm.errors.push('Invalid item to refund.');
@@ -34,7 +33,6 @@
       	
       	App.collection.order.loadOne({id: orderItem.orderId}, function(order) {
       		
-      		console.log(moment().subtract(15,"days") - moment(order.DeliveredDate));
       		
 
 			if (moment().subtract(15,"days") <= moment(order.date)) {   
