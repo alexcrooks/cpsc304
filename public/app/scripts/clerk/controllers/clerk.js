@@ -9,6 +9,12 @@
       errors: []
     };
 
+    $scope.getOrders = function () {                                            
+      return App.collection.order.getCustom(function (order) {
+        return moment().subtract(15,"days") <= moment(order.date);
+      });
+    };
+
     $scope.refundForm = refundForm;
 
     $scope.refund = function () {
@@ -37,7 +43,7 @@
 					});
 					
 				});
-			} else return refundForm.errors.push('Unable to refund item: Purchase occured over 15 days ago');
+			} else return refundForm.errors.push('Unable to refund: Purchase occured over 15 days ago');
       	});
        });
      }; 
