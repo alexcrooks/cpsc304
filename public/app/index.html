@@ -42,7 +42,7 @@
     </nav>
 
     <div class="container" ng-if="state.appReady">
-      <alert ng-repeat="alert in state.alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</alert>
+      <alert ng-repeat="alert in getAlerts()" type="{{alert.type}}" close="removeAlert($index)">{{alert.msg}}</alert>
     </div>
 
     <div ng-if="state.appReady" ng-view></div>

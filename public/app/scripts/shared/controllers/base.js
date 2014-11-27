@@ -34,6 +34,10 @@
       $scope.state.alerts.splice(0, 1);
     };
 
+    $scope.getAlerts = function () {
+      return $scope.state.alerts;
+    };
+
     $scope.init();
 
   }]);
