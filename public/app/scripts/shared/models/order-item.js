@@ -5,6 +5,7 @@ OrderItem = {};
 
   OrderItem = function (doc) {
     _.extend(this, doc);
+    this.id = this.orderId + ',' + this.upc;
   };
 
   OrderItem.prototype.getItem = function () {
