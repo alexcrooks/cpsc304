@@ -27,11 +27,21 @@ The following are required in your terminal to successfully run the app:
 To check if you have these, you can usually test with `name --version` or
 `name -v`, where name is one of the strings below (e.g. `mysql`).
 
-make
-mysql
-node
-npm
-grunt
-bower
-ruby
-compass
+make mysql node npm grunt bower ruby compass
+
+## Credits
+
+Lynsey Haynes
+12686119
+a4h8
+lynseyahaynes@gmail.com
+
+Alex Crooks
+34144121
+v4o8
+alex@alexcrooks.com
+
+Jonathan Kwok
+31933120
+l7p8
+jonafunkwok@gmail.com
