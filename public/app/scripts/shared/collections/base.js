@@ -12,6 +12,14 @@
       });
     };
 
+    BaseCollection.prototype.update = function (data, callback) {
+      var self = this;
+      var result = self.service.update(data, function () {
+        var items = self.addToCollection(result.data.items);
+        return callback(items);
+      });
+    };
+
     BaseCollection.prototype.addToCollection = function (items) {
       var self = this;
       var arrayProvided = _.isArray(items);

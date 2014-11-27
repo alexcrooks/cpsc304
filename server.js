@@ -7,7 +7,11 @@ var bodyParser = require('koa-bodyparser');
 var _ = require('underscore');
 var db = require('./lib/helpers/db.js');
 var app = koa();
-app.use(cors({origin: '*'}));
+var corsConfig = {
+  origin: '*',
+  methods: ['PUT', 'POST', 'GET', 'DELETE']
+};
+app.use(cors(corsConfig));
 app.use(bodyParser());
 
 surface(app);

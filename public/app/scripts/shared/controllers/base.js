@@ -5,7 +5,8 @@
     $scope.state = {
       appReady: false,
       controller: '',
-      customer: null
+      customer: null,
+      alerts: []
     };
     
     $scope.init = function () {
@@ -22,6 +23,14 @@
 
     $scope.debug = function () {
       console.log.apply(console, arguments);
+    };
+
+    $scope.addAlert = function (message, short) {
+      var length = $scope.state.alerts.push({type: 'success', msg: message});
+    };
+
+    $scope.removeAlert = function (index) {
+      $scope.state.alerts.splice(0, 1);
     };
 
     $scope.init();

@@ -42,7 +42,9 @@
     });
   }]));
 
-  App.app.config(['$routeProvider', function ($routeProvider) {
+  App.app.config(['$routeProvider', 'datepickerConfig', function ($routeProvider, datepickerConfig) {
+    datepickerConfig.showWeeks = false;
+
     $routeProvider.when('/customer', {
       templateUrl: 'scripts/customer/views/index.html',
       controller: 'CustomerCtrl'

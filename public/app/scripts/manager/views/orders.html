@@ -1,0 +1,33 @@
+<table class="table">
+  <thead>
+  <tr>
+    <td>Order ID</td>
+    <td>Date</td>
+    <td>Delivered</td>
+    <td>Items</td>
+    <td>Total</td>
+  </tr>
+  </thead>
+  <tbody>
+  <tr ng-repeat="order in getOrders()">
+    <td>{{order.id}}</td>
+    <td>{{order.date | date}}</td>
+    <td>{{order.deliveredDate | date}}</td>
+    <td>
+      <div ng-repeat="orderItem in order.getOrderItems()">
+        <span ng-switch="orderItem.quantity > 1">
+          <span ng-switch-when="true">{{orderItem.quantity}} copies</span>
+          <span ng-switch-when="false">{{orderItem.quantity}} copy</span>
+        </span>
+        {{orderItem.getItem().title}} (UPC: {{orderItem.getItem().upc}}) @ {{orderItem.getItem().price}}
+      </div>
+    </td>
+    <td>{{order.getTotal() | currency:''}}</td>
+  </tr>
+  <tbody>
+  <tfoot>
+  <tr>
+    <td class="text-center" colspan="5">No orders found.</td>
+  </tr>
+  </tfoot>
+</table>

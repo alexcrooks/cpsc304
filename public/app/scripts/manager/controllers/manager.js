@@ -3,7 +3,7 @@
 
   App.app.controller('ManagerCtrl', ['$scope', function ($scope) {
     $scope.state.controller = 'manager'; 
-    $scope.state.section = 'home';
+    $scope.state.section = 'deliver';
   }]);
 
 })(window.App);

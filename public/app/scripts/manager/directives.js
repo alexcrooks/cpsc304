@@ -45,4 +45,13 @@
     };
   });
 
+  App.app.directive('orders', function () {
+    return {
+      restrict: 'A',
+      replace: true,
+      controller: 'OrdersCtrl',
+      templateUrl: 'scripts/manager/views/orders.html'
+    };
+  });
+
 })(window.App);

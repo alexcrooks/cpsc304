@@ -1,3 +1,14 @@
 <div>
+  <form class="form-inline" name="deliverNgForm" ng-submit="deliver()">
+    <p>Select an order id and date to register a delivery.</p>
+    <div class="form-group">
+      <select class="form-control input-sm" name="order" placeholder="Order ID" ng-model="deliverForm.data.order" ng-options="order.id for order in getOrders()" ng-required="true"></select>
+      <input type="text" class="form-control input-sm" name="deliveredDate" placeholder="Delivery Date" ng-model="deliverForm.data.deliveredDate" datepicker-popup is-open="data.isOpen" ng-click="data.isOpen=true" show-button-bar="false" ng-required="true">
+      <input type="submit" class="btn btn-sm btn-primary" value="Process">
+      <p class="help-text" ng-if="deliverNgForm.order.$dirty && deliverNgForm.order.$invalid">Order ID is required</p>
+      <p class="help-text" ng-if="deliverNgForm.deliveredDate.$dirty && deliverNgForm.deliveredDate.$invalid">Delivery date is required</p>
+    </div>
+  </form>
 
+  <div orders></div>
 </div>
