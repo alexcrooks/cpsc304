@@ -19,7 +19,7 @@
         deliveredDate: $scope.deliverForm.data.deliveredDate
       };
       App.collection.order.update(data, function (result) {
-        $scope.addAlert('Delivery successfully recorded', true);
+        $scope.addAlert('Delivery successfully recorded');
       });
     };
 

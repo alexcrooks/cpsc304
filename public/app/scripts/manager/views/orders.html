@@ -9,25 +9,26 @@
   </tr>
   </thead>
   <tbody>
-  <tr ng-repeat="order in getOrders()">
+  <tr ng-repeat="order in getOrders() as resultSet">
     <td>{{order.id}}</td>
     <td>{{order.date | date}}</td>
     <td>{{order.deliveredDate | date}}</td>
     <td>
-      <div ng-repeat="orderItem in order.getOrderItems()">
+      <div ng-repeat="orderItem in order.getOrderItems() as itemsResultSet">
         <span ng-switch="orderItem.quantity > 1">
           <span ng-switch-when="true">{{orderItem.quantity}} copies</span>
           <span ng-switch-when="false">{{orderItem.quantity}} copy</span>
         </span>
         {{orderItem.getItem().title}} (UPC: {{orderItem.getItem().upc}}) @ {{orderItem.getItem().price}}
       </div>
+      <div ng-if="!itemsResultSet.length">All items refunded</div>
     </td>
     <td>{{order.getTotal() | currency:''}}</td>
   </tr>
   <tbody>
   <tfoot>
   <tr>
-    <td class="text-center" colspan="5">No orders found.</td>
+    <td class="text-center" colspan="5" ng-if="!resultSet.length">No orders found.</td>
   </tr>
   </tfoot>
 </table>
