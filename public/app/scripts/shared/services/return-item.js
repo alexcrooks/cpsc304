@@ -5,13 +5,13 @@
 
   App.app.factory('ReturnItem', ['$resource', function ($resource) {
     var methods = {
-      create: {url: baseUrl + '/return-items', method: 'POST'},
-      find: {url: baseUrl + '/return-items/:returnId/:upc', method: 'GET'},
-      get: {url: baseUrl + '/return-items', method: 'GET'},
-      delete: {url: baseUrl + 'return-items/:returnId/:upc', method: 'DELETE'},
-      update: {url: baseUrl + 'return-items/:returnId/:upc', method: 'PUT'}
+      create: {url: baseUrl + '/returnitems', method: 'POST'},
+      find: {url: baseUrl + '/returnitems/:returnId/:upc', method: 'GET'},
+      get: {url: baseUrl + '/returnitems', method: 'GET'},
+      delete: {url: baseUrl + '/returnitems/:returnId/:upc', method: 'DELETE'},
+      update: {url: baseUrl + '/returnitems/:returnId/:upc', method: 'PUT'}
     };
-    return $resource(baseUrl + '/return-items/:returnId/:upc', {returnId: '@returnId', upc: '@upc'}, methods); 
+    return $resource(baseUrl + '/returnitems/:returnId/:upc', {returnId: '@returnId', upc: '@upc'}, methods); 
   }]);
 
 })(window.App);

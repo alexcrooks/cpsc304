@@ -8,8 +8,8 @@
       create: {url: baseUrl + '/songs', method: 'POST'},
       find: {url: baseUrl + '/songs/:upc/:title', method: 'GET'},
       get: {url: baseUrl + '/songs', method: 'GET'},
-      delete: {url: baseUrl + 'songs/:upc/:title', method: 'DELETE'},
-      update: {url: baseUrl + 'songs/:upc/:title', method: 'PUT'}
+      delete: {url: baseUrl + '/songs/:upc/:title', method: 'DELETE'},
+      update: {url: baseUrl + '/songs/:upc/:title', method: 'PUT'}
     };
     return $resource(baseUrl + '/songs/:upc/:title', {upc: '@upc', title: '@title'}, methods); 
   }]);
