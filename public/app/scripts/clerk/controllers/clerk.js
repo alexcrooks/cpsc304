@@ -9,29 +9,31 @@
       errors: []
     };
 
-    var testOrder = {
-    	order_id: 123,
-    	upc: 1
-    }
+    $scope.refundForm = refundForm;
 
     $scope.refund = function () {
       refundForm.errors = [];
       
-      var selector = {order_id: refundForm.data.order_id, upc: refundForm.data.upc};
-      App.collection.orderItem.loadOne(selector, function (orderItem) {
-	    if (!orderItem) 
-      	  return returnForm.errors.push('Invalid item to refund')
+      var orderItemData = {orderId: parseInt(refundForm.data.order_id), upc: parseInt(refundForm.data.upc)};
+      console.log(orderItemData);
+      App.collection.orderItem.loadOne(orderItemData, function (orderItem) {
+	    if (!orderItem) { // || !orderItem.length
+      	  return refundForm.errors.push('Invalid item to refund.');
+      	}
       	
-      	var today = new Date();
-      	console.log(today);
-      	App.collection.order.loadOne(orderItem.order_id, function(order) {
-			console.log(order.date);
-			if (1) {
-				var return_data = {order_id: order.order_id, date: today};
-				App.collection.return.insert(return_data, function(returnData) {
-					var returnItem_data = {return_id: return_data.id, upc: order_item.upc, quantity: order_item.quantity};
-					App.collection.returnItem.insert(data, function(returnItem) {
+      	App.collection.order.loadOne({id: orderItem.orderId}, function(order) {
+			console.log(order);
+			if (moment().subtract(15,"days") >= moment(order.date)) {   //TODO
+				var setReturnData = {orderId: order.id, date: moment().format(App.config.dbDateFormat)};
+				App.collection.return.insert(setReturnData, function(returnData) {
+					var returnItemData = {returnId: returnData.id, upc: orderItem.upc, quantity: orderItem.quantity};
+					App.collection.returnItem.insert(returnItemData, function(returnItem) {
+						console.log("return:", returnData);
+						console.log("return Item:", returnItem)
 						console.log('Happy!');
+						App.collection.orderItem.delete(orderItemData, function(deletedOrderItem) {
+							$scope.addAlert('Item successfully refunded!');
+						})
 					});
 					
 				});
