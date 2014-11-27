@@ -1,3 +1,9 @@
+window.App = {
+  config: {
+    apiEndpoint: 'http://localhost:3000'
+  }
+};
+
 (function (App) {
   'use strict';
 
