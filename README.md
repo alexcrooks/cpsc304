@@ -1,6 +1,23 @@
 # CPSC 304 Project
 
-A point-of-sale app for the AMS store
+A point-of-sale app for the AMS store.
+
+## Technical Details
+
+This is build as a modern web app with an API backend and a reactive, JavaScript,
+frontend communicating with the RESTful API.
+
+The backend is built in node.js using the koa framework, the successor to the
+popular Express framework, which takes advantage of experimental JavaScript
+features such as generators.
+
+The frontend uses AngularJS, a Google-maintained, declarative framework offering
+some of the most breaking-edge web technology such as two-way data bindings
+(removing a lot of work from the developer to make the visual page match the
+underlying data). It communicates with the API using REST over HTTP.
+
+Together these offer a very fast, reactive and simple aproach to web app
+development and have done very well for us as a team in completing this project.
 
 ## Installation
 
