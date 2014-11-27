@@ -1,5 +1,25 @@
 <div class="container">
-  <h1>AMS Store</h1>
+  <h1>Manage</h1>
 
-  <p>Welcome to the AMS Store. Please click one of the links above, <strong>Customer</strong>, <strong>Clerk</strong> or <strong>Manager</strong> to go to that portal of the app.</p>
+  <div class="container">
+    <div>
+      <ul class="nav nav-tabs">
+        <li role="presentation" ng-class="{'active':(state.section === 'home')}"><a href="" ng-click="state.section = 'home'">Home</a></li>
+        <li role="presentation" ng-class="{'active':(state.section === 'add')}"><a href="" ng-click="state.section = 'add'">Add Item</a></li>
+        <li role="presentation" ng-class="{'active':(state.section === 'deliver')}"><a href="" ng-click="state.section = 'deliver'">Process Delivery</a></li>
+        <li role="presentation" ng-class="{'active':(state.section === 'dailySales')}"><a href="" ng-click="state.section = 'dailySales'">Daily Sales Report</a></li>
+        <li role="presentation" ng-class="{'active':(state.section === 'topItems')}"><a href="" ng-click="state.section = 'topItems'">Top Selling Items</a></li>
+      </ul>
+    </div>
+
+    <div ng-if="state.section === 'home'" manager-home></div>
+
+    <div ng-if="state.section === 'add'" manager-add></div>
+
+    <div ng-if="state.section === 'deliver'" manager-deliver></div>
+
+    <div ng-if="state.section === 'dailySales'" manager-daily-sales></div>
+
+    <div ng-if="state.section === 'topItems'" manager-top-items></div>
+  </div>
 </div>
