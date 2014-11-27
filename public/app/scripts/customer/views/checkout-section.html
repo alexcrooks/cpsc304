@@ -5,9 +5,9 @@
     <p>Your order:</p>
 
     <div ng-repeat="cartItem in getOrder()">
-      <span ng-switch="orderItem.quantity > 1">
-        <span ng-switch-when="true">{{orderItem.quantity}} copies</span>
-        <span ng-switch-when="false">{{orderItem.quantity}} copy</span>
+      <span ng-switch="cartItem.quantity > 1">
+        <span ng-switch-when="true">{{cartItem.quantity}} copies</span>
+        <span ng-switch-when="false">{{cartItem.quantity}} copy</span>
       </span>
       <em>{{getItem(cartItem.upc).title}}</em>
     </div>
