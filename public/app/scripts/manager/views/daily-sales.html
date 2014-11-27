@@ -1,4 +1,6 @@
 <div>
+  <p>Enter your search criteria to generate a daily sales report.</p>
+  
   <form class="form-inline" name="dailySalesNgForm" ng-submit="loadReport()">
     <div class="form-group">
       <input type="text" class="form-control input-sm" name="date" placeholder="Date" ng-model="dailySalesForm.data.date" datepicker-popup is-open="data.isOpen" ng-click="data.isOpen=true" show-button-bar="false" ng-required="true">

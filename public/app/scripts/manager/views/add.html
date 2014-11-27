@@ -1,3 +1,53 @@
 <div>
+  <p>Add a new item.</p>
 
+  <form name="addNgForm" ng-submit="submit(addNgForm)">
+    <div class="form-group">
+      <input type="text" class="form-control input-sm" name="title" placeholder="Title" ng-model="addForm.data.title" ng-maxlength="255">
+      <p class="help-text" ng-if="showFormError(addNgForm, 'title', 'required')">Required</p>
+      <p class="help-text" ng-if="showFormError(addNgForm, 'title', 'maxlength')">Must be less than 255 characters</p>
+    </div>
+    <div class="form-group">
+      <select class="form-control input-sm" name="type" placeholder="Type" ng-model="addForm.data.type" ng-required="true">
+        <option value selected>Type</option>
+        <option value="CD">CD</option>
+        <option value="DVD">DVD</option>
+      </select>
+      <p class="help-text" ng-if="showFormError(addNgForm, 'type', 'required')">Required</p>
+    </div>
+    <div class="form-group">
+      <select class="form-control input-sm" name="category" placeholder="Category" ng-model="addForm.data.category" ng-required="true">
+        <option value selected>Category</option>
+        <option value="ROCK">Rock</option>
+        <option value="POP">Pop</option>
+        <option value="RAP">Rap</option>
+        <option value="COUNTRY">Country</option>
+        <option value="CLASSICAL">Classical</option>
+        <option value="NEW_AGE">New Age</option>
+        <option value="INSTRUMENTAL">Instrumental</option>
+      </select>
+      <p class="help-text" ng-if="showFormError(addNgForm, 'category', 'required')">Required</p>
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control input-sm" name="company" placeholder="Company" ng-model="addForm.data.company" ng-maxlength="255" ng-required="true">
+      <p class="help-text" ng-if="showFormError(addNgForm, 'company', 'required')">Required</p>
+      <p class="help-text" ng-if="showFormError(addNgForm, 'company', 'maxlength')">Must be less than 255 characters</p>
+    </div>
+    <div class="form-group">
+      <input type="number" class="form-control input-sm" name="year" min="1900" max="2100" placeholder="Year" ng-model="addForm.data.year" ng-required="true">
+      <p class="help-text" ng-if="showFormError(addNgForm, 'year', 'required')">Required</p>
+    </div>
+    <div class="form-group">
+      <input type="number" class="form-control input-sm" name="price" min="0" step="0.01" placeholder="Price" ng-model="addForm.data.price" ng-required="true">
+      <p class="help-text" ng-if="showFormError(addNgForm, 'price', 'required')">Required</p>
+    </div>
+    <div class="form-group">
+      <input type="number" class="form-control input-sm" name="stock" min="0" placeholder="Stock" ng-model="addForm.data.stock" ng-required="true">
+      <p class="help-text" ng-if="showFormError(addNgForm, 'stock', 'required')">Required</p>
+    </div>
+    <div class="form-group">
+      <input type="submit" class="btn btn-sm btn-primary" value="Add Item">
+      <button class="btn btn-sm btn-default" ng-click="clear(addNgForm)">Clear</button>
+    </div>
+  </form>
 </div>

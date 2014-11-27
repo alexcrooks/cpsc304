@@ -25,8 +25,9 @@
       console.log.apply(console, arguments);
     };
 
-    $scope.addAlert = function (message, short) {
-      var length = $scope.state.alerts.push({type: 'success', msg: message});
+    $scope.addAlert = function (message, failure) {
+      var type = failure === true ? 'danger' : 'success';
+      var length = $scope.state.alerts.push({type: type, msg: message});
     };
 
     $scope.removeAlert = function (index) {

@@ -1,4 +1,6 @@
 <div>
+  <p>Enter your search criteria to generate a top selling items report.</p>
+
   <form class="form-inline" name="topItemsNgForm" ng-submit="loadReport()">
     <div class="form-group">
       <input type="text" class="form-control input-sm" name="date" placeholder="Date" ng-model="topItemsForm.data.date" datepicker-popup is-open="data.isOpen" ng-click="data.isOpen=true" show-button-bar="false" ng-required="true">
