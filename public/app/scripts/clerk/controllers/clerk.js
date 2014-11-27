@@ -11,8 +11,13 @@
 
     $scope.getOrders = function () {                                            
       return App.collection.order.getCustom(function (order) {
-        return moment().subtract(15,"days") <= moment(order.date);
+        return moment().subtract(15, 'days') <= moment(order.date);
       });
+    };
+
+    $scope.init = function () {
+      var nop = function () {};
+      App.collection.order.load({}, nop);
     };
 
     $scope.refundForm = refundForm;
@@ -48,6 +53,8 @@
        });
      }; 
 	  
+    $scope.init();
+
   }]);
 
 })(window.App);
