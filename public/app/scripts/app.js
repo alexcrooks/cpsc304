@@ -6,13 +6,13 @@
   App.collection = {
       collections: [
         {name: 'Customer', id: 'id'},
-        {name: 'HasSong'},
+        {name: 'HasSong', id: 'id'}, // generated
         {name: 'Item', id: 'upc'},
-        {name: 'LeadSinger'},
+        {name: 'LeadSinger', id: 'id'}, // generated
         {name: 'Order', id: 'id'},
-        {name: 'OrderItem'},
+        {name: 'OrderItem', id: 'id'}, // generated
         {name: 'Return', id: 'id'},
-        {name: 'ReturnItem'}
+        {name: 'ReturnItem', id: 'id'} // generated
       ]
   };
 
