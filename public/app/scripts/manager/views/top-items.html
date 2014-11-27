@@ -1,3 +1,38 @@
 <div>
+  <form class="form-inline" name="topItemsNgForm" ng-submit="loadReport()">
+    <div class="form-group">
+      <input type="text" class="form-control input-sm" name="date" placeholder="Date" ng-model="topItemsForm.data.date" datepicker-popup is-open="data.isOpen" ng-click="data.isOpen=true" show-button-bar="false" ng-required="true">
+      <input type="text" class="form-control input-sm" name="limit" placeholder="Limit" ng-model="topItemsForm.data.limit" ng-required="true">
+      <input type="submit" class="btn btn-sm btn-primary" value="Search">
+      <button class="btn btn-sm btn-default" ng-click="clearReport()">Reset</button>
+      <p ng-if="showFormError(topItemsNgForm, 'date', 'required');">Date is required</p>
+      <p ng-if="showFormError(topItemsNgForm, 'limit', 'required');">Limit is required</p>
+    </div>
+  </form>
 
+  <div>
+    <table class="table">
+      <thead>
+      <tr>
+        <td>Title</td>
+        <td>Company</td>
+        <td>Stock</td>
+        <td>Units Sold</td>
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="line in reportData as resultSet">
+        <td>{{line.title}}</td>
+        <td>{{line.company}}</td>
+        <td>{{line.stock}}</td>
+        <td>{{line.units}}</td>
+      </tr>
+      </tbody>
+      <tfoot>
+        <tr ng-if="!resultSet.length">
+          <td class="text-center" colspan="4">No results were found with given search.</td> 
+        </tr>
+      </tfoot>
+    </table>
+  </div>
 </div>

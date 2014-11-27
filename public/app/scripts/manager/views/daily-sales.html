@@ -1,3 +1,49 @@
 <div>
+  <form class="form-inline" name="dailySalesNgForm" ng-submit="loadReport()">
+    <div class="form-group">
+      <input type="text" class="form-control input-sm" name="date" placeholder="Date" ng-model="dailySalesForm.data.date" datepicker-popup is-open="data.isOpen" ng-click="data.isOpen=true" show-button-bar="false" ng-required="true">
+      <input type="submit" class="btn btn-sm btn-primary" value="Search">
+      <button class="btn btn-sm btn-default" ng-click="clearReport()">Reset</button>
+    </div>
+  </form>
 
+  <div>
+    <table class="table">
+      <thead>
+      <tr>
+        <td>UPC</td>
+        <td>Category</td>
+        <td>Unit Price</td>
+        <td>Units</td>
+        <td>Total Value</td>
+      </tr>
+      </thead>
+      <tbody ng-repeat="category in getCategories() as categoryResultSet">
+        <tr ng-repeat="line in getReportDataByCategory(category) as resultSet">
+          <td>{{line.upc}}</td> 
+          <td>{{getCategoryDisplay(line.category)}}</td> 
+          <td>{{line.price}}</td> 
+          <td>{{line.units}}</td> 
+          <td>{{line.total}}</td> 
+        </tr>
+        <tr>
+          <td></td>
+          <td>Total</td>
+          <td></td>
+          <td>{{getTotalUnits(resultSet)}}</td>
+          <td>{{getTotal(resultSet)}}</td>
+        </tr>
+      </tbody>
+      <tfoot>
+      <tr ng-if="!!categoryResultSet.length">
+        <td class="text-right" colspan="3">Total Daily Sales</td>
+        <td>{{getTotalUnits()}}</td>
+        <td>{{getTotal()}}</td>
+      </tr>
+      <tr ng-if="!categoryResultSet.length">
+        <td class="text-center" colspan="5">No results were found with given search.</td>
+      </tr>
+      </tfoot>
+    </table>
+  </div>
 </div>
