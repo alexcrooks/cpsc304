@@ -3,7 +3,7 @@
 
   <form name="addNgForm" ng-submit="submit(addNgForm)">
     <div class="form-group">
-      <input type="text" class="form-control input-sm" name="title" placeholder="Title" ng-model="addForm.data.title" ng-maxlength="255">
+      <input type="text" class="form-control input-sm" name="title" placeholder="Title" ng-model="addForm.data.title" ng-required="true" ng-maxlength="255">
       <p class="help-text" ng-if="showFormError(addNgForm, 'title', 'required')">Required</p>
       <p class="help-text" ng-if="showFormError(addNgForm, 'title', 'maxlength')">Must be less than 255 characters</p>
     </div>
@@ -45,9 +45,35 @@
       <input type="number" class="form-control input-sm" name="stock" min="0" placeholder="Stock" ng-model="addForm.data.stock" ng-required="true">
       <p class="help-text" ng-if="showFormError(addNgForm, 'stock', 'required')">Required</p>
     </div>
+    <div class="form-inline" ng-if="addForm.data.type === 'CD'" ng-init="addForm.data.hasSongs = [];">
+      <strong>Songs</strong>
+      <span ng-if="!addForm.data.hasSongs.length">
+        <a href="" ng-click="addForm.data.hasSongs.push({});">add song</a>
+      </span>
+      <br>
+      <div class="form-group" ng-repeat="song in addForm.data.hasSongs">
+        <input type="text" class="form-control input-sm" name="songTitle{{$index}}" placeholder="Song Title" ng-model="addForm.data.hasSongs[$index].title" ng-required="true" ng-maxlength="255">
+        <button type="button" class="btn btn-sm btn-danger" ng-click="addForm.data.hasSongs.splice($index, 1)"><span class="glyphicon glyphicon-minus"></span></button>
+        <button type="button" class="btn btn-sm btn-primary" ng-click="addForm.data.hasSongs.push({})" ng-if="$index === (addForm.data.hasSongs.length - 1)"><span class="glyphicon glyphicon-plus"></span></button>
+      <p class="help-text" ng-if="showFormError(addNgForm, 'songTitle' + $index, 'maxlength')">Must be less than 255 characters</p>
+      </div>
+    </div>
+    <div class="form-inline" ng-if="addForm.data.type === 'CD'" ng-init="addForm.data.leadSingers = [];">
+      <strong>Singers</strong>
+      <span ng-if="!addForm.data.leadSingers.length">
+        <a href="" ng-click="addForm.data.leadSingers.push({});">add singer</a>
+      </span>
+      <br>
+      <div class="form-group" ng-repeat="song in addForm.data.leadSingers">
+        <input type="text" class="form-control input-sm" name="leadSinger{{$index}}" placeholder="Singer Name" ng-model="addForm.data.leadSingers[$index].name" ng-required="true">
+        <button type="button" class="btn btn-sm btn-danger" ng-click="addForm.data.leadSingers.splice($index, 1)"><span class="glyphicon glyphicon-minus"></span></button>
+        <button type="button" class="btn btn-sm btn-primary" ng-click="addForm.data.leadSingers.push({})" ng-if="$index === (addForm.data.leadSingers.length - 1)"><span class="glyphicon glyphicon-plus"></span></button>
+      <p class="help-text" ng-if="showFormError(addNgForm, 'leadSinger' + $index, 'maxlength')">Must be less than 255 characters</p>
+      </div>
+    </div>
     <div class="form-group">
       <input type="submit" class="btn btn-sm btn-primary" value="Add Item">
-      <button class="btn btn-sm btn-default" ng-click="clear(addNgForm)">Clear</button>
+      <button type="button" class="btn btn-sm btn-default" ng-click="clear(addNgForm)">Clear</button>
     </div>
   </form>
 </div>
