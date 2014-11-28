@@ -12,7 +12,7 @@
       <em>{{getItem(cartItem.upc).title}}</em>
     </div>
 
-    <p><strong>Total:</strong> {{getTotalCartPrice(getOrder()) | currency:''}}</p>
+    <p><strong>Total:</strong> {{getTotalCartPrice(getOrder()) | currency:'$'}}</p>
   </div>
 
   <form name="checkoutNgForm" ng-submit="checkout();" ng-if="!checkoutForm.order">

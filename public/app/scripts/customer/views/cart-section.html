@@ -18,7 +18,7 @@
     <tfoot>
     <tr ng-if="resultSet.length">
       <td colspan="4"></td>
-      <td>{{getTotalCartPrice()}}</td>
+      <td>{{getTotalCartPrice() | currency:'$'}}</td>
       <td><button class="btn btn-sm btn-primary" ng-click="state.section='checkout'">Checkout</button>
     </tr>
     <tr ng-if="!resultSet.length">

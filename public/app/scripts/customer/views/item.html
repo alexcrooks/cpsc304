@@ -11,7 +11,7 @@
   {{item.title}} <span ng-if="item.year !== '0000'">({{item.year}})</span><br>
   <span class="text-muted">{{item.company}}</span>
 </td>
-<td>{{item.price | currency:''}}</td>
+<td>{{item.price | currency:'$'}}</td>
 <td class="form-inline" ng-if="state.section === 'shop'">
   <div ng-switch="alreadyInCart(item.upc)">
     <div ng-switch-when="true">
@@ -27,7 +27,7 @@
   {{getQuantity(item.upc)}}
 </td>
 <td ng-if="state.section === 'cart'">
-  {{getTotal(item.upc) | currency:''}}
+  {{getTotal(item.upc) | currency:'$'}}
 </td>
 <td ng-if="state.section === 'cart'">
   <button class="btn btn-sm btn-danger" ng-click="removeFromCart(item.upc);"><span class="glyphicon glyphicon-remove"></span></button>
