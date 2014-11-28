@@ -14,6 +14,7 @@
       <thead>
       <tr>
         <td>UPC</td>
+        <td>Title</td>
         <td>Category</td>
         <td>Unit Price</td>
         <td>Units</td>
@@ -23,27 +24,29 @@
       <tbody ng-repeat="category in getCategories() as categoryResultSet">
         <tr ng-repeat="line in getReportDataByCategory(category) as resultSet">
           <td>{{line.upc}}</td> 
+          <td>{{line.title}}</td>
           <td>{{getCategoryDisplay(line.category)}}</td> 
-          <td>{{line.price}}</td> 
+          <td>{{line.price | currency:'$'}}</td> 
           <td>{{line.units}}</td> 
-          <td>{{line.total}}</td> 
+          <td>{{line.total | currency:'$'}}</td> 
         </tr>
         <tr>
+          <td></td>
           <td></td>
           <td>Total</td>
           <td></td>
           <td>{{getTotalUnits(resultSet)}}</td>
-          <td>{{getTotal(resultSet)}}</td>
+          <td>{{getTotal(resultSet) | currency:'$'}}</td>
         </tr>
       </tbody>
       <tfoot>
       <tr ng-if="!!categoryResultSet.length">
-        <td class="text-right" colspan="3">Total Daily Sales</td>
+        <td class="text-right" colspan="4">Total Daily Sales</td>
         <td>{{getTotalUnits()}}</td>
-        <td>{{getTotal()}}</td>
+        <td>{{getTotal() | currency:'$'}}</td>
       </tr>
       <tr ng-if="!categoryResultSet.length">
-        <td class="text-center" colspan="5">No results were found with given search.</td>
+        <td class="text-center" colspan="6">No results were found with given search.</td>
       </tr>
       </tfoot>
     </table>
