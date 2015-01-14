@@ -35,7 +35,7 @@ development and have done very well for us as a team in completing this project.
 1. `make run`
 2. Visit localhost:3000 in your favourite web browser
 3. In another terminal window, `cd public`
-4. `make server
+4. `make server`
 
 ## Requirements
 
